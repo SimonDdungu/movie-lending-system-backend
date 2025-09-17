@@ -12,6 +12,11 @@ class Loans(models.Model):
     loan_date = models.DateTimeField(auto_now_add=True)
     due_date = models.DateTimeField()
     returned_date = models.DateTimeField(blank=True, null=True)
-    returned = models.BooleanField(default=False)
+    loan_status = [
+        ("returned", "Returned"),
+        ("pending", "Pending"),
+        ("lost", "Lost"),
+    ]
+    status = models.CharField(max_length=20, choices=loan_status, default="pending")
     updated_at = models.DateTimeField(auto_now=True)
 
